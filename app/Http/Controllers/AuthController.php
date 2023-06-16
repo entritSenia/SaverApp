@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -50,6 +52,7 @@ class AuthController extends Controller
         $incomingFields = $request->validate([
             'username' => ['required', 'min:3', 'max:20', Rule::unique('users', 'username')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'phone' => ['required', 'max:10', Rule::unique('users', 'phone')],
             'password' => ['required', 'min:8', 'confirmed'],
         ]);
 
@@ -89,6 +92,7 @@ class AuthController extends Controller
             'username' => ['required', 'min:3', 'max:20', Rule::unique('users', 'username')->ignore($user)],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user)],
             'phone' => ['required', 'max:10', Rule::unique('users', 'phone')->ignore($user)],
+            'income' => ['required', 'min:2'],
             'password' => ['required', 'min:8', 'confirmed'],
         ]);
 
@@ -103,7 +107,30 @@ class AuthController extends Controller
     }
 
 
+    public function storeAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|max:3000'
+        ]);
 
+        $user = auth()->user();
+
+        $filename = $user->username . '-' . uniqid() . '.jpg';
+
+        $imgData = Image::make($request->file('avatar'))->fit(240)->encode('jpg');
+        Storage::put('public/avatar/' . $filename, $imgData);
+
+        $oldAvatar = $user->avatar;
+
+        $user->avatar = $filename;
+        $user->save();
+
+        if ($oldAvatar != $user->avatar) {
+            Storage::delete(str_replace("/storage/", "public/", $oldAvatar));
+        }
+
+        return back()->with('success', 'Avatar uploaded successfully');
+    }
 
 
 

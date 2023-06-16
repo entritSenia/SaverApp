@@ -1,7 +1,16 @@
 <script setup>
 import Pagination from "@/Components/Pagination.vue";
 import { Link } from "@inertiajs/vue3";
-defineProps({ listings: Object });
+// import { Inertia } from "@inertiajs/inertia";
+import { ref, watch } from "vue";
+const props = defineProps({ listings: Object });
+// console.log(props.listings);
+
+const search = ref("");
+
+watch(search, (value) => {
+    Inertia.get("/admin/tags", { search: value }, { preserveState: true });
+});
 </script>
 
 <template>
@@ -23,6 +32,20 @@ defineProps({ listings: Object });
                     DataTables Example
                 </h6>
             </div>
+            <div class="input-group">
+                <div class="form-outline">
+                    <input
+                        v-model="search"
+                        type="search"
+                        id="form1"
+                        class="form-control"
+                    />
+                    <label class="form-label" for="form1">Search</label>
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table
@@ -38,8 +61,8 @@ defineProps({ listings: Object });
                                 <th>Type</th>
                                 <th>For</th>
                                 <th>Price</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <!-- <th>Edit</th>
+                                <th>Delete</th> -->
                             </tr>
                         </thead>
 
@@ -53,7 +76,12 @@ defineProps({ listings: Object });
                                 <td>{{ listing.need }}</td>
                                 <td v-if="listing.type === 0">For Pleasure</td>
                                 <td v-else>Necessary</td>
-                                <td>{{ listing.for }}</td>
+                                <td v-if="listing.for === 0">home</td>
+                                <td v-else-if="listing.for === 1">car</td>
+                                <td v-else-if="listing.for === 2">
+                                    subscription
+                                </td>
+                                <td v-else-if="listing.for === 3">food</td>
                                 <td>${{ listing.price }}</td>
                                 <td class="border-0">
                                     <Link
@@ -61,8 +89,10 @@ defineProps({ listings: Object });
                                             route('listing.edit', listing.id)
                                         "
                                         as="button"
-                                        class="btn btn-info btn-circle"
-                                        ><i class="fas fa-info-circle"></i
+                                        class="btn btn-info"
+                                        ><i
+                                            class="fa-regular fa-pen-to-square"
+                                        ></i
                                     ></Link>
                                 </td>
                                 <td class="border-0">
@@ -72,7 +102,7 @@ defineProps({ listings: Object });
                                         "
                                         method="delete"
                                         as="button"
-                                        class="btn btn-danger btn-circle"
+                                        class="btn btn-danger"
                                         ><i class="fas fa-trash"></i
                                     ></Link>
                                 </td>

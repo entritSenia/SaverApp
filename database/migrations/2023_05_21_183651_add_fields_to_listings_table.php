@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('need');
             $table->boolean('type');
             $table->boolean('status');
-            $table->string('for');
+            $table->boolean('for');
             $table->unsignedBigInteger('price');
         });
     }

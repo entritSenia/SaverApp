@@ -5,6 +5,7 @@ const register = () => form.post(route("register.registerStore"));
 const form = useForm({
     username: null,
     email: null,
+    phone: null,
     password: null,
     password_confirmation: null,
 });
@@ -34,6 +35,12 @@ const form = useForm({
                                     >
                                         <div class="form-group">
                                             <input
+                                                type="hidden"
+                                                name="token"
+                                                value="{{ $token }}"
+                                            />
+                                            <!-- csrf token protection -->
+                                            <input
                                                 v-model="form.username"
                                                 type="text"
                                                 class="form-control form-control-user"
@@ -62,6 +69,22 @@ const form = useForm({
                                                 {{ form.errors.email }}
                                             </p>
                                         </div>
+                                        <div class="form-group">
+                                            <!-- <label>Phone number</label> -->
+                                            <input
+                                                type="text"
+                                                class="form-control form-control-user"
+                                                v-model="form.phone"
+                                                id="phone"
+                                                placeholder="Phone Number"
+                                            />
+                                            <div
+                                                class="m-0 alert alert-danger shadow-sm"
+                                                v-if="form.errors.phone"
+                                            >
+                                                {{ form.errors.phone }}
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input
@@ -86,7 +109,7 @@ const form = useForm({
                                                     type="password"
                                                     class="form-control form-control-user"
                                                     id="password_confirmation"
-                                                    placeholder="Repeat Password"
+                                                    placeholder="Confirm Password"
                                                 />
                                                 <p
                                                     v-if="
@@ -127,15 +150,18 @@ const form = useForm({
                                     </form>
                                     <hr />
                                     <div class="text-center">
-                                        <a
+                                        <Link
                                             class="small"
                                             href="forgot-password.html"
-                                            >Forgot Password?</a
+                                            >Forgot Password?</Link
                                         >
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" :href="route('login')"
-                                            >Already have an account? Login!</a
+                                        <Link
+                                            class="small"
+                                            :href="route('login')"
+                                            >Already have an account?
+                                            Login!</Link
                                         >
                                     </div>
                                 </div>

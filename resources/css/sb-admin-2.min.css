@@ -1453,7 +1453,7 @@ pre code {
 }
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #e3e6f0;
+    /* border-bottom: 2px solid #e3e6f0; */
 }
 .table tbody + tbody {
     /* border-top: 2px solid #e3e6f0; */
@@ -2225,11 +2225,11 @@ textarea.form-control.is-invalid {
     color: #858796;
     text-decoration: none;
 }
-.btn.focus,
+/* .btn.focus,
 .btn:focus {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(116 116 116 / 25%);
-}
+} */
 .btn.disabled,
 .btn:disabled {
     opacity: 0.65;
@@ -2346,41 +2346,43 @@ fieldset:disabled a.btn {
 .show > .btn-success.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
 }
+
 .btn-info {
-    color: #fff;
-    background-color: #36b9cc;
-    border-color: #36b9cc;
+    font-size: 20px;
+    color: #6e91b4;
+    background-color: transparent;
+    border-color: transparent;
 }
 .btn-info:hover {
-    color: #fff;
-    background-color: #2c9faf;
-    border-color: #2a96a5;
+    color: #2b5f9b;
+    background-color: transparent;
+    border-color: transparent;
 }
 .btn-info.focus,
 .btn-info:focus {
-    color: #fff;
-    background-color: #2c9faf;
-    border-color: #2a96a5;
-    box-shadow: 0 0 0 0.2rem rgba(84, 196, 212, 0.5);
+    color: #2b5f9b;
+    background-color: transparent;
+    border-color: transparent;
+    /* box-shadow: 0 0 0 0.2rem rgba(84, 196, 212, 0.5); */
 }
 .btn-info.disabled,
 .btn-info:disabled {
-    color: #fff;
-    background-color: #36b9cc;
-    border-color: #36b9cc;
+    color: #2b5f9b;
+    background-color: transparent;
+    border-color: transparent;
 }
 .btn-info:not(:disabled):not(.disabled).active,
 .btn-info:not(:disabled):not(.disabled):active,
 .show > .btn-info.dropdown-toggle {
-    color: #fff;
-    background-color: #2a96a5;
-    border-color: #278c9b;
+    color: #2b5f9b;
+    background-color: transparent;
+    border-color: transparent;
 }
-.btn-info:not(:disabled):not(.disabled).active:focus,
+/* .btn-info:not(:disabled):not(.disabled).active:focus,
 .btn-info:not(:disabled):not(.disabled):active:focus,
 .show > .btn-info.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(84, 196, 212, 0.5);
-}
+} */
 .btn-warning {
     color: #fff;
     background-color: #f6c23e;
@@ -2417,40 +2419,41 @@ fieldset:disabled a.btn {
     box-shadow: 0 0 0 0.2rem rgba(247, 203, 91, 0.5);
 }
 .btn-danger {
-    color: #fff;
-    background-color: #e74a3b;
-    border-color: #e74a3b;
+    font-size: 20px;
+    color: #e74a3b;
+    background-color: transparent;
+    border-color: transparent;
 }
 .btn-danger:hover {
-    color: #fff;
-    background-color: #e02d1b;
-    border-color: #d52a1a;
+    color: #e02d1b;
+    background-color: transparent;
+    border-color: transparent;
 }
 .btn-danger.focus,
 .btn-danger:focus {
-    color: #fff;
-    background-color: #e02d1b;
-    border-color: #d52a1a;
-    box-shadow: 0 0 0 0.2rem rgba(235, 101, 88, 0.5);
+    color: #e02d1b;
+    background-color: transparent;
+    border-color: transparent;
+    /* box-shadow: 0 0 0 0.2rem rgba(235, 101, 88, 0.5); */
 }
 .btn-danger.disabled,
 .btn-danger:disabled {
-    color: #fff;
-    background-color: #e74a3b;
-    border-color: #e74a3b;
+    color: #e02d1b;
+    background-color: transparent;
+    border-color: transparent;
 }
 .btn-danger:not(:disabled):not(.disabled).active,
 .btn-danger:not(:disabled):not(.disabled):active,
 .show > .btn-danger.dropdown-toggle {
-    color: #fff;
-    background-color: #d52a1a;
-    border-color: #ca2819;
+    color: #d52a1a;
+    background-color: transparent;
+    border-color: transparent;
 }
-.btn-danger:not(:disabled):not(.disabled).active:focus,
+/* .btn-danger:not(:disabled):not(.disabled).active:focus,
 .btn-danger:not(:disabled):not(.disabled):active:focus,
 .show > .btn-danger.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(235, 101, 88, 0.5);
-}
+} */
 .btn-light {
     color: #3a3b45;
     background-color: #f8f9fc;
@@ -9457,6 +9460,7 @@ a:focus {
 .sidebar {
     width: 6.5rem;
     min-height: 100vh;
+    height: 100%;
 }
 .sidebar .nav-item {
     position: relative;

@@ -19,7 +19,7 @@ class ListingFactory extends Factory
         return [
             'need' => fake()->unique()->text(),
             'type' => fake()->boolean(),
-            'for' => fake()->text(),
+            'for' => fake()->boolean(),
             'price' => fake()->numberBetween(0, 2_000_000)
 
         ];

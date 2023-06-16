@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { useForm, Link } from "@inertiajs/vue3";
 const login = () => form.post(route("login.store"));
 
 const form = useForm({
@@ -35,6 +35,12 @@ const form = useForm({
                                     </div>
                                     <form @submit.prevent="login" class="user">
                                         <div class="form-group">
+                                            <input
+                                                type="hidden"
+                                                name="token"
+                                                value="{{ $token }}"
+                                            />
+                                            <!-- csrf token protection -->
                                             <input
                                                 v-model="form.loginusername"
                                                 type="text"
@@ -114,10 +120,10 @@ const form = useForm({
                                         >
                                     </div> -->
                                     <div class="text-center">
-                                        <a
+                                        <Link
                                             class="small"
                                             :href="route('register')"
-                                            >Create an Account!</a
+                                            >Create an Account!</Link
                                         >
                                     </div>
                                 </div>

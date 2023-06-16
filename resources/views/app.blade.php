@@ -40,6 +40,7 @@
     @vite(['resources/vendor/jquery/jquery.min.js'])
     @vite(['resources/vendor/bootstrap/js/bootstrap.bundle.min.js'])
     @vite(['resources/vendor/jquery-easing/jquery.easing.min.js'])
+    @vite(['resources/js/sb-admin-2.js'])
     @vite(['resources/js/sb-admin-2.min.js'])
 
     {{-- <!-- Bootstrap core JavaScript-->

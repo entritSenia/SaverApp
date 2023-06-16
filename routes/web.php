@@ -18,22 +18,26 @@ use App\Http\Controllers\ListingController;
 //     return view('app');
 // });
 
-
 Route::get('/', [ListingController::class, 'index'])->middleware('auth');
 Route::get('listing/table', [ListingController::class, 'table'])->middleware('auth');
 Route::resource('listing', ListingController::class)->middleware('auth');
 
+//name assign a unique name to the route,
+//which can be helpful when generating URLs or linking
+//to the route from other parts of your application.
 
 Route::get('login', [AuthController::class, "login"])->name('login')->middleware('guest');
 Route::post('login', [AuthController::class, "store"])->name('login.store')->middleware('guest');
 
 Route::get('profile', [AuthController::class, "profile"])->name('profile')->middleware('auth');
 Route::put('profile', [AuthController::class, "update"])->name('profile.updateAccount');
+// Route::put('profile', [AuthController::class, "update"])->name('profile.updateAvatar');
 
 Route::delete('logout', [AuthController::class, "logout"])->name('logout')->middleware('auth');
 
 Route::get('register', [AuthController::class, "register"])->name('register')->middleware('guest');
 Route::post('register', [AuthController::class, "registerStore"])->name('register.registerStore')->middleware('guest');
+
 // Route::get('/', [AuthController::class, 'showCorrectHomepage'])->name('login');
 // Route::post('/login', [AuthController::class, "login"])->middleware('guest');
 // Route::post('/register', [AuthController::class, 'register']);

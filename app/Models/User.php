@@ -37,6 +37,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->income = 0; // Set default value for email column
+        });
+    }
+
     /**
      * The attributes that should be cast.
      *

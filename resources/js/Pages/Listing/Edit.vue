@@ -23,10 +23,13 @@ const form = useForm({
         <div class="col-4">
             <div class="form-group">
                 <label>Need</label>
+                <input type="hidden" name="token" value="{{ $token }}" />
+                <!-- csrf token protection -->
                 <input
                     class="form-control item"
                     v-model.number="form.need"
                     type="text"
+                    placeholder="rent..."
                 />
                 <div class="input-error" v-if="form.errors.need">
                     {{ form.errors.need }}
@@ -61,14 +64,50 @@ const form = useForm({
 
             <div class="form-group">
                 <label>For</label>
-                <input
-                    class="form-control item"
-                    v-model.number="form.for"
-                    type="text"
-                />
-                <div class="input-error" v-if="form.errors.for">
-                    {{ form.errors.for }}
+                <div>
+                    <input
+                        type="radio"
+                        id="necessary"
+                        value="0"
+                        v-model="form.for"
+                    />
+                    <label for="necessary" class="ml-2 mr-4">Home</label>
+
+                    <input
+                        type="radio"
+                        id="forPleasure"
+                        value="1"
+                        v-model="form.for"
+                    />
+                    <label for="forPleasure" class="ml-2 mr-4">Car</label>
+
+                    <input
+                        type="radio"
+                        id="forPleasure"
+                        value="2"
+                        v-model="form.for"
+                    />
+                    <label for="forPleasure" class="ml-2 mr-4"
+                        >Subscription</label
+                    >
+
+                    <input
+                        type="radio"
+                        id="forPleasure"
+                        value="3"
+                        v-model="form.for"
+                    />
+                    <label for="forPleasure" class="ml-2 mr-4">Food</label>
+
+                    <input type="hidden" name="type" :value="form.type" />
+
+                    <div class="input-error" v-if="form.errors.for">
+                        {{ form.errors.for }}
+                    </div>
                 </div>
+                <!-- <div class="input-error" v-if="form.errors.type">
+                    {{ form.errors.type }}
+                </div> -->
             </div>
 
             <div class="form-group">

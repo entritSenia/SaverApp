@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\User;
 use App\Models\Listing;
-use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ListingController extends Controller
 {
@@ -16,11 +17,14 @@ class ListingController extends Controller
     public function index()
     {
         $listings = Listing::orderByDesc('created_at')->where('by_user_id', auth()->user()->id);
+        $listingsData = Listing::orderByDesc('created_at')->where('by_user_id', auth()->user()->id)->paginate(8);
         $totalPrice = $listings->sum('price'); // for all
-        $homeData = Listing::where('for', '=', 'home')->get()->toArray(); // for house
-        $carData = Listing::where('for', '=', 'car')->get()->toArray(); // for car
+        $homeData = DB::table('listings')->where('for', '=', 0)
+            ->where('by_user_id', auth()->user()->id)->get()->toArray(); // for house
+        $carData = DB::table('listings')->where('for', '=', 1)
+            ->where('by_user_id', auth()->user()->id)->get()->toArray(); // for car
         $Data = $listings->get()->toArray(); // for all
-        return inertia('Listing/Index', ['listings' => $listings, 'totalPrice' => $totalPrice, 'homeData' => $homeData, 'carData' => $carData, 'data' => $Data]);
+        return inertia('Listing/Index', ['listings' => $listings, 'listingsData' => $listingsData, 'totalPrice' => $totalPrice, 'homeData' => $homeData, 'carData' => $carData, 'data' => $Data]);
     }
 
     public function table()
@@ -59,8 +63,6 @@ class ListingController extends Controller
         return redirect()->route('listing.index')->with('success', 'Listing was created!');
     }
 
-
-
     /**
      * Display the specified resource.
      */
@@ -90,7 +92,7 @@ class ListingController extends Controller
             $request->validate([
                 'need' => 'required|string',
                 'type' => 'required|boolean',
-                'for' => 'required|string',
+                'for' => 'required|boolean',
                 'status' => 'required|boolean',
                 'price' => 'required|integer|min:0',
             ])

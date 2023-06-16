@@ -15,12 +15,20 @@ const props = defineProps({
 const updateAccount = () =>
     form.put(route("profile.updateAccount", props.user?.id));
 
+// const updateAvatar = () =>
+//     formavatar.put(route("profile.updateAvatar", props.user?.id));
+
 const form = useForm({
     username: props.user?.username,
     email: props.user?.email,
     phone: props.user?.phone,
+    income: props.user?.income,
     password: props.user?.password,
     password_confirmation: props.user?.password_confirmation,
+});
+
+const formavatar = useForm({
+    avatar: props.user?.avatar,
 });
 </script>
 
@@ -40,6 +48,24 @@ const form = useForm({
                         </div>
                         <h4 class="text-center">{{ username }}</h4>
                     </div>
+                    <!-- <div class="text-center">
+                        <label class="form-label" for="customFile"
+                            >Change Image</label
+                        >
+                        <form
+                            @submit.prevent="updateAvatar"
+                            enctype="multipart/form-data"
+                        >
+                            <input
+                                type="file"
+                                class="form-control border-0"
+                                id="customFile"
+                            />
+                            <button class="btn btn-primary mr-2" type="submit">
+                                Update
+                            </button>
+                        </form>
+                    </div> -->
                     <!-- <div
                         class="nav flex-column nav-pills"
                         id="v-pills-tab"
@@ -152,21 +178,35 @@ const form = useForm({
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 justify-content-start">
-                                <div class="col-md-6 pl-0">
-                                    <div class="form-group">
-                                        <label>Phone number</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="form.phone"
-                                        />
-                                        <div
-                                            class="input-error"
-                                            v-if="form.errors.phone"
-                                        >
-                                            {{ form.errors.phone }}
-                                        </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="form.phone"
+                                    />
+                                    <div
+                                        class="input-error"
+                                        v-if="form.errors.phone"
+                                    >
+                                        {{ form.errors.phone }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Income</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="form.income"
+                                    />
+                                    <div
+                                        class="input-error"
+                                        v-if="form.errors.income"
+                                    >
+                                        {{ form.errors.income }}
                                     </div>
                                 </div>
                             </div>
