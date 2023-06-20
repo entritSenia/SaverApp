@@ -1,15 +1,16 @@
 <script setup>
 import Pagination from "@/Components/Pagination.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 // import { Inertia } from "@inertiajs/inertia";
 import { ref, watch } from "vue";
-const props = defineProps({ listings: Object });
+const props = defineProps({ listings: Object, tags: Object });
 // console.log(props.listings);
 
 const search = ref("");
+const perPage = ref(5);
 
 watch(search, (value) => {
-    Inertia.get("/admin/tags", { search: value }, { preserveState: true });
+    router.get("/tags", { search: value }, { preserveState: true });
 });
 </script>
 
