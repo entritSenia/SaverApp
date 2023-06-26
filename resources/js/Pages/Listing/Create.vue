@@ -17,7 +17,7 @@ const form = useForm({
         class="row col-12 justify-content-start pl-5 pt-3 align-items-center"
         @submit.prevent="create"
     >
-        <div class="col-4">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-4">
             <div class="form-group">
                 <label>Need</label>
                 <input type="hidden" name="token" value="{{ $token }}" />

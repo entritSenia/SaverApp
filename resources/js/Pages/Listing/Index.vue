@@ -294,14 +294,17 @@ onMounted(() => {
 
         <!-- Content Row -->
         <div class="row col-12 d-flex pl-4 pt-1">
-            <div v-if="props.data && props.data.length > 0" class="col-8">
-                <div class="card shadow p-4">
+            <div
+                v-if="props.data && props.data.length > 0"
+                class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8 row d-flex"
+            >
+                <div class="card col-12 pr-4 shadow p-4">
                     <canvas id="barChart"></canvas>
                 </div>
             </div>
             <div
                 v-if="props.homeData && props.homeData.length > 0"
-                class="col-lg-4 row d-flex text-right justify-content-end mb-0"
+                class="col-md-12 col-lg-4 row d-flex text-right justify-content-end mb-0"
             >
                 <div class="col-12 card shadow p-4">
                     <!-- <h3 class="text-center">Home Expenses ${{ totalPrice }}</h3> -->
@@ -313,7 +316,10 @@ onMounted(() => {
         </div>
 
         <div class="row col-12 d-flex pl-4 pt-2">
-            <div v-if="props.carData && props.carData.length > 0" class="col-4">
+            <div
+                v-if="props.carData && props.carData.length > 0"
+                class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4"
+            >
                 <div class="card shadow p-4">
                     <i class="fa-solid fa-car text-center"></i>
                     <canvas id="doughnut"></canvas>
@@ -325,7 +331,7 @@ onMounted(() => {
                     props.listingsData.data &&
                     props.listingsData.data.length > 0
                 "
-                class="col-8"
+                class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8"
             >
                 <div
                     class="card shadow mb-4 m-auto justify-content-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"

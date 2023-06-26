@@ -1,6 +1,5 @@
 (function ($) {
     "use strict"; // Start of use strict
-
     // Toggle the side navigation
     $("#sidebarToggle, #sidebarToggleTop").on("click", function (e) {
         $("body").toggleClass("sidebar-toggled");
@@ -8,7 +7,17 @@
         if ($(".sidebar").hasClass("toggled")) {
             $(".sidebar .collapse").collapse("hide");
         }
+        console.log("sidebar");
     });
+
+    // $("#sidebarToggleTop").on("click", function (e) {
+    //     if ($(".sidebar").hasClass("toggled")) {
+    //         $(".sidebar").removeClass("toggled");
+    //         console.log("remove toggle");
+    //     }
+    //     $(".sidebar").addClass("toggled");
+    //     console.log("toggled");
+    // });
 
     // Close any open menu accordions when window is resized below 768px
     $(window).resize(function () {
@@ -22,6 +31,15 @@
             $(".sidebar").addClass("toggled");
             $(".sidebar .collapse").collapse("hide");
         }
+    });
+
+    $("#sidebarToggleTop").on("click", function (e) {
+        if ($(".sidebar").hasClass("toggled")) {
+            $(".sidebar").removeClass("toggled");
+            console.log("remove toggle");
+        }
+        $(".sidebar").addClass("toggled");
+        console.log("toggled");
     });
 
     // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
@@ -61,4 +79,5 @@
             );
         e.preventDefault();
     });
+    // console.log("entered");
 })(jQuery); // End of use strict

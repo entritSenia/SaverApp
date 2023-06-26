@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\User;
 use App\Models\Listing;
+use Illuminate\Http\Request;
 // use Illuminate\Http\Request;
-use Request;
+// use Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
@@ -32,21 +33,21 @@ class ListingController extends Controller
     {
         $listings = Listing::orderByDesc('created_at')->where('by_user_id', auth()->user()->id)->paginate(4);
         // $listings = Listing::all();
-        $tags = Listing::query()->where(Request::input('search'), function ($query, $search) {
-            $query->where('need', 'like', "%{$search}%");
-            // ->OrWhere('for', 'like', "%{$search}%");
-        })->paginate(5);
-        return inertia('Listing/Table', ['listings' => $listings, 'tags' => $tags]);
+        // $tags = Listing::query()->where(Request::input('search'), function ($query, $search) {
+        // $query->where('need', 'like', "%{$search}%");
+        // ->OrWhere('for', 'like', "%{$search}%");
+        // })->paginate(5);
+        return inertia('Listing/Table', ['listings' => $listings]);
     }
 
-    public function tableSearch()
-    {
-        $tags = Listing::query()->where(Request::input('search'), function ($query, $search) {
-            $query->where('need', 'like', "%{$search}%");
-            // ->OrWhere('for', 'like', "%{$search}%");
-        })->paginate(5);
-        return inertia('Listing/Table/{search}', ['tags' => $tags]);
-    }
+    // public function tableSearch()
+    // {
+    //     $tags = Listing::query()->where(Request::input('search'), function ($query, $search) {
+    //         $query->where('need', 'like', "%{$search}%");
+    //         // ->OrWhere('for', 'like', "%{$search}%");
+    //     })->paginate(5);
+    //     return inertia('Listing/Table/{search}', ['tags' => $tags]);
+    // }
 
     /**
      * Show the form for creating a new resource.
