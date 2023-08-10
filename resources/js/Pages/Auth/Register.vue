@@ -150,11 +150,11 @@ const form = useForm({
                                     </form>
                                     <hr />
                                     <div class="text-center">
-                                        <Link
+                                        <!-- <Link
                                             class="small"
                                             href="forgot-password.html"
                                             >Forgot Password?</Link
-                                        >
+                                        > -->
                                     </div>
                                     <div class="text-center">
                                         <Link
