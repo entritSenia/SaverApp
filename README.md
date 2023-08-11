@@ -99,8 +99,6 @@ php artisan route:list
 composer require tightenco/ziggy
 it makes the routes in vue easier 
 
-=>THEME -> OK
-
 =>AUTHENTICATION <- fixed!!
 crud operations
 login
@@ -118,7 +116,6 @@ now, in the vue pages , in the script  i can do this
 const username = computed(() => page.props.user?.username || "Guest");
 
 {{username}}    <- text interpolation , render the data !!!
-
 
 =>RELATIONSHIPS -> MYSQL!!
 building the relations between the models (User, Listing)
