@@ -5,6 +5,10 @@ MONEY SAVING APP
 provide solution for clients , so they can save money and reduce expenses
 
 
+
+https://github.com/entritSenia/SaverApp/assets/135906703/fb02a031-5516-43ff-a1cd-c8d5ab01d257
+
+
 !!!!!!NOTES THAT I KEPT THE WHOLE TIME OF BUILDING THE APPLICATION!!!!!!
 
 Laravel + Vue Js + Inertia Js
